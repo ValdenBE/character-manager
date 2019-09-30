@@ -48,25 +48,23 @@ function getHeroes() {
                     array = resp.data;
                     array.forEach(function (element) {
                         var div = document.createElement("div");
+                        var p = document.createElement("p");
+                        var btnView = document.createElement("button");
+                        var btnMod = document.createElement("button");
+                        var img = document.createElement("img");
                         var content = (element.name + " " + element.shortDescription);
-                        div.textContent = content;
-                        document.body.appendChild(div);
+                        btnView.textContent = "View";
+                        btnMod.textContent = "Modification";
+                        p.textContent = content;
+                        document.body.appendChild(div).appendChild(img);
+                        img.src = "data: image / gif; base64," + element.image;
+                        document.body.appendChild(div).appendChild(p);
+                        document.body.appendChild(div).appendChild(btnView);
+                        document.body.appendChild(div).appendChild(btnMod);
                     });
                     return [2 /*return*/];
             }
         });
     });
 }
-// async function postHeroes() {
-//     const resp = await axios.post(api);
-//     console.log(resp.data);
-// }
-// async function putHeroes() {
-//     const resp = await axios.put(api);
-//     console.log(resp.data);
-// }
-// async function delHeroes() {
-//     const resp = await axios.delete(api);
-//     console.log(resp.data);
-// }
 getHeroes();
