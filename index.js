@@ -83,6 +83,12 @@ var inputName = document.getElementById("name");
 var inputShortDesc = document.getElementById("shortDesc");
 var inputFullDesc = document.getElementById("fulDesc");
 var inputImg = document.getElementById("pict");
+closeForm.addEventListener("click", function () {
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    closeForm();
+});
 btnSubmit.addEventListener("click", function () {
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
@@ -103,7 +109,6 @@ btnSubmit.addEventListener("click", function () {
                                 shortDescription: inputShortDesc.value,
                                 description: inputFullDesc.value,
                                 image: inputImg.value
-                                //   image: 'https://source.unsplash.com/random'
                             })];
                     case 2:
                         response = _a.sent();
@@ -118,5 +123,15 @@ btnSubmit.addEventListener("click", function () {
             });
         });
     }
-    postUser();
+    if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
+        console.error("Remplissez tout les champs pour valider !");
+        alert("Remplissez tout les champs pour valider !");
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+        openForm();
+    }
+    else {
+        postUser();
+    }
 });

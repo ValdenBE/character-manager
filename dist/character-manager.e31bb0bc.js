@@ -2033,6 +2033,13 @@ var inputName = document.getElementById("name");
 var inputShortDesc = document.getElementById("shortDesc");
 var inputFullDesc = document.getElementById("fulDesc");
 var inputImg = document.getElementById("pict");
+closeForm.addEventListener("click", function () {
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  closeForm();
+});
 btnSubmit.addEventListener("click", function () {
   function closeForm() {
     document.getElementById("myForm").style.display = "none";
@@ -2058,8 +2065,7 @@ btnSubmit.addEventListener("click", function () {
               name: inputName.value,
               shortDescription: inputShortDesc.value,
               description: inputFullDesc.value,
-              image: inputImg.value //   image: 'https://source.unsplash.com/random'
-
+              image: inputImg.value
             })];
 
           case 2:
@@ -2085,7 +2091,17 @@ btnSubmit.addEventListener("click", function () {
     });
   }
 
-  postUser();
+  if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
+    var openForm = function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    };
+
+    console.error("Remplissez tout les champs pour valider !");
+    alert("Remplissez tout les champs pour valider !");
+    openForm();
+  } else {
+    postUser();
+  }
 });
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

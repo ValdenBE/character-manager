@@ -50,7 +50,12 @@ let inputName = <HTMLInputElement>document.getElementById("name");
 let inputShortDesc = <HTMLInputElement>document.getElementById("shortDesc");
 let inputFullDesc = <HTMLInputElement>document.getElementById("fulDesc");
 let inputImg = <HTMLInputElement>document.getElementById("pict");
-
+closeForm.addEventListener("click", () => {
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    closeForm();
+});
 btnSubmit.addEventListener("click", () => {
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
@@ -65,7 +70,7 @@ btnSubmit.addEventListener("click", () => {
                 shortDescription: inputShortDesc.value,
                 description: inputFullDesc.value,
                 image: inputImg.value
-                //   image: 'https://source.unsplash.com/random'
+
             });
             console.log(response.data);
             return response;
@@ -73,7 +78,16 @@ btnSubmit.addEventListener("click", () => {
             console.error(error);
         }
     }
-    postUser();
+    if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
+        console.error("Remplissez tout les champs pour valider !")
+        alert("Remplissez tout les champs pour valider !")
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+        openForm();
+    } else {
+        postUser();
+    }
 });
 
 
