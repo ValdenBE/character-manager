@@ -1993,6 +1993,7 @@ function getHeroes() {
           array = resp.data;
           array.forEach(function (element) {
             var div = document.createElement("div");
+            div.setAttribute('type', 'button');
             var pName = document.createElement("p");
             var pDesc = document.createElement("p");
             pName.setAttribute('class', 'Name');
@@ -2006,6 +2007,15 @@ function getHeroes() {
             img.src = "data: image / gif; base64," + element.image;
             document.querySelector('main').appendChild(div).appendChild(pName);
             document.querySelector('main').appendChild(div).appendChild(pDesc);
+            div.addEventListener("click", function () {
+              function openInfos() {
+                document.getElementById("Infos").style.display = "flex";
+                document.getElementsByClassName("contentData")[0].textContent = element.name;
+                document.getElementsByClassName("contentData")[1].textContent = element.shortDescription;
+              }
+
+              openInfos();
+            });
           });
           return [2
           /*return*/
@@ -2015,6 +2025,17 @@ function getHeroes() {
   });
 }
 
+getHeroes();
+var closeInfos = document.createElement("button");
+closeInfos.textContent = "Close";
+closeInfos.addEventListener("click", function () {
+  function closeInfos() {
+    document.getElementById("Infos").style.display = "none";
+  }
+
+  closeInfos();
+});
+closeInfos.setAttribute('class', 'closeFormBtn');
 var btnAdd = document.createElement("button");
 btnAdd.textContent = "Create Character";
 btnAdd.setAttribute('class', 'btnAdd');
@@ -2038,12 +2059,68 @@ closeForm.setAttribute('class', 'closeFormBtn');
 var btnSubmit = document.createElement("button");
 btnSubmit.setAttribute('class', 'btnSubmit');
 btnSubmit.textContent = "Submit";
-btnSubmit.addEventListener("click", function () {//! ici 
-});
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
 document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+document.getElementsByClassName('infos-popup')[0].appendChild(closeInfos);
 document.querySelector('header').appendChild(btnAdd);
-getHeroes();
+var inputName = document.getElementById("name");
+var inputShortDesc = document.getElementById("shortDesc");
+var inputFullDesc = document.getElementById("fulDesc");
+var inputImg = document.getElementById("pict");
+btnSubmit.addEventListener("click", function () {
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  closeForm();
+
+  function postUser() {
+    return __awaiter(this, void 0, void 0, function () {
+      var response, error_1;
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            console.log("testum");
+            _a.label = 1;
+
+          case 1:
+            _a.trys.push([1, 3,, 4]);
+
+            return [4
+            /*yield*/
+            , axios.post(api + '/characters', {
+              name: inputName.value,
+              shortDescription: inputShortDesc.value,
+              description: inputFullDesc.value,
+              image: inputImg.value
+            })];
+
+          case 2:
+            response = _a.sent();
+            console.log(response.data);
+            window.location.href = window.location.href;
+            return [2
+            /*return*/
+            , response];
+
+          case 3:
+            error_1 = _a.sent();
+            console.error(error_1);
+            return [3
+            /*break*/
+            , 4];
+
+          case 4:
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  }
+
+  postUser();
+});
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2072,7 +2149,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61738" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57767" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

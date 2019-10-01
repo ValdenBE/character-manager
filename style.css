@@ -91,7 +91,7 @@ p {
     right: 28px;
     width: 280px;
 }
-.form-popup {
+.form-popup, .infos-popup {
     display: none;
     position: fixed;
     z-index: 1;
@@ -145,4 +145,15 @@ input{
     margin: 0;
     color: #1E3231;
     margin-top: -35px;
+}
+.infos-content{
+    width: 40%;
+    height: auto;
+    background-color: #485665;
+    margin: auto;
+    padding: 50px;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    border: 1px solid white;
 }

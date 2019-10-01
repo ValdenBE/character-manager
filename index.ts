@@ -8,6 +8,7 @@ async function getHeroes() {
     array.forEach((element: { name: string; shortDescription: string; image: string; }) => {
 
         let div = document.createElement("div")
+        div.setAttribute('type', 'button')
         let pName = document.createElement("p")
         let pDesc = document.createElement("p")
         pName.setAttribute('class', 'Name');
@@ -24,9 +25,33 @@ async function getHeroes() {
 
         document.querySelector('main').appendChild(div).appendChild(pName)
         document.querySelector('main').appendChild(div).appendChild(pDesc)
+        div.addEventListener("click", () => {
+            function openInfos() {
+                document.getElementById("Infos").style.display = "flex";
+                document.getElementsByClassName("contentData")[0].textContent = element.name
+                document.getElementsByClassName("contentData")[1].textContent = element.shortDescription
+            }
+            openInfos()
+        });
 
     });
+    
 }
+getHeroes();
+
+
+let closeInfos = document.createElement("button")
+closeInfos.textContent="Close"
+closeInfos.addEventListener("click", ()=>{
+    function closeInfos() {
+        document.getElementById("Infos").style.display = "none";
+    }
+    closeInfos()
+})
+closeInfos.setAttribute('class', 'closeFormBtn')
+
+
+
 let btnAdd = document.createElement("button")
 btnAdd.textContent="Create Character"
 btnAdd.setAttribute('class', 'btnAdd')
@@ -49,15 +74,43 @@ closeForm.setAttribute('class', 'closeFormBtn')
 let btnSubmit = document.createElement("button")
 btnSubmit.setAttribute('class', 'btnSubmit')
 btnSubmit.textContent="Submit"
-btnSubmit.addEventListener("click", ()=>{
-//! ici 
-
-})
-
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit)
 document.getElementsByClassName('form-popup')[0].appendChild(closeForm)
+document.getElementsByClassName('infos-popup')[0].appendChild(closeInfos)
 document.querySelector('header').appendChild(btnAdd)
 
 
-getHeroes();
+let inputName = <HTMLInputElement>document.getElementById("name");
+let inputShortDesc = <HTMLInputElement>document.getElementById("shortDesc");
+let inputFullDesc = <HTMLInputElement>document.getElementById("fulDesc");
+let inputImg = <HTMLInputElement>document.getElementById("pict");
+
+btnSubmit.addEventListener("click", () => {
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    closeForm();
+    async function postUser() {
+        console.log("testum");
+
+        try {
+            const response = await axios.post(api + '/characters', {
+                name: inputName.value,
+                shortDescription: inputShortDesc.value,
+                description: inputFullDesc.value,
+                image: inputImg.value
+            });
+            console.log(response.data);
+            window.location.href=window.location.href
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    postUser();
+});
+
+
+
+
 
