@@ -10,48 +10,27 @@
 <script src="/style.e308ff8e.js"></script></head>
 
 <body>
-    <!-- <button class="open-button" onclick="openForm()">Open Form</button>
-    <section id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Add new hero</h1>
-
-            <label for="email"><b>Name</b></label>
-            <input type="text" placeholder="Enter name" name="name" required>
-
-            <label for="description"><b>Description</b></label>
-            <input type="text" placeholder="Enter description" name="description" required>
-
-            <label for="image"><b>Image></label>
-            <input type="text" placeholder="Enter description" name="image" required>
-
-            <button type="Add" class="AddNew">Add</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
-    </section> -->
-
-    <button class="open-button" onclick="openForm()">Open Form</button>
-    <div class="form-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Login</h1>
-            <label for="email"><b>Email</b></label>
-
-
-
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
-    </div>
-    <script>btnAdd.addEventListener("click", function () {
-  function openForm() {
-    document.getElementById("myForm").style.display = "block";
-  }
-
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
-});</script>
-
+    <header></header>
+    <main>
+        <div class="form-popup" id="myForm">
+                <form id="test" method="post">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name">
+                        <label for="shortDesc">Short         Description</label>
+                        <input class="form-control" type="text" name="shortDesc" id="shortDesc">
+                        <label for="fullDesc">Full Description</label>
+                        <input class="form-control" type="text" name="fullDesc" id="fulDesc">
+                        <label for="pict">Picture</label>
+                        <input class="form-control" type="text" name="pict" id="pict">
+                     </form>
+                     <pre id="output"></pre>
+                     
+        </div>
+    </main>
+   
+    
     <script src="/character-manager.e31bb0bc.js"></script>
-
 </body>
 
 </html>
+

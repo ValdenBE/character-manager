@@ -1977,7 +1977,6 @@ var __generator = this && this.__generator || function (thisArg, body) {
 var axios = require('axios');
 
 var api = 'https://character-database.becode.xyz';
-var list = [];
 
 function getHeroes() {
   return __awaiter(this, void 0, void 0, function () {
@@ -1995,18 +1994,15 @@ function getHeroes() {
           array.forEach(function (element) {
             var div = document.createElement("div");
             var p = document.createElement("p");
-            var btnAdd = document.createElement("button");
             var btnMod = document.createElement("button");
             var img = document.createElement("img");
             var content = element.name + " " + element.shortDescription;
-            btnAdd.textContent = "Add";
             btnMod.textContent = "Modification";
             p.textContent = content;
-            document.body.appendChild(div).appendChild(img);
+            document.querySelector('main').appendChild(div).appendChild(img);
             img.src = "data: image / gif; base64," + element.image;
-            document.body.appendChild(div).appendChild(p);
-            document.body.appendChild(div).appendChild(btnAdd);
-            document.body.appendChild(div).appendChild(btnMod);
+            document.querySelector('main').appendChild(div).appendChild(p);
+            document.querySelector('main').appendChild(div).appendChild(btnMod);
           });
           return [2
           /*return*/
@@ -2016,6 +2012,31 @@ function getHeroes() {
   });
 }
 
+var btnAdd = document.createElement("button");
+btnAdd.textContent = "ajouter un personnage";
+btnAdd.addEventListener("click", function () {
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  openForm();
+});
+var closeForm = document.createElement("button");
+closeForm.textContent = "Close";
+closeForm.addEventListener("click", function () {
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  closeForm();
+});
+var btnSubmit = document.createElement("button");
+btnSubmit.textContent = "Submit";
+btnSubmit.addEventListener("click", function () {//! ici 
+});
+document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
+document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+document.querySelector('header').appendChild(btnAdd);
 getHeroes();
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -2045,7 +2066,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38419" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61738" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
