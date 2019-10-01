@@ -63,6 +63,7 @@ function getHeroes() {
         });
     });
 }
+getHeroes();
 var btnAdd = document.createElement("button");
 btnAdd.textContent = "ajouter un personnage";
 btnAdd.addEventListener("click", function () {
@@ -73,18 +74,49 @@ btnAdd.addEventListener("click", function () {
 });
 var closeForm = document.createElement("button");
 closeForm.textContent = "Close";
-closeForm.addEventListener("click", function () {
+var btnSubmit = document.createElement("button");
+btnSubmit.textContent = "Submit";
+document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
+document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+document.querySelector('header').appendChild(btnAdd);
+var inputName = document.getElementById("name");
+var inputShortDesc = document.getElementById("shortDesc");
+var inputFullDesc = document.getElementById("fulDesc");
+var inputImg = document.getElementById("pict");
+btnSubmit.addEventListener("click", function () {
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
     }
     closeForm();
+    function postUser() {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log("testum");
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, axios.post(api + '/characters', {
+                                name: inputName.value,
+                                shortDescription: inputShortDesc.value,
+                                description: inputFullDesc.value,
+                                image: inputImg.value
+                                //   image: 'https://source.unsplash.com/random'
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        console.log(response.data);
+                        return [2 /*return*/, response];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.error(error_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    }
+    postUser();
 });
-var btnSubmit = document.createElement("button");
-btnSubmit.textContent = "Submit";
-btnSubmit.addEventListener("click", function () {
-    //! ici 
-});
-document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
-document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
-document.querySelector('header').appendChild(btnAdd);
-getHeroes();
