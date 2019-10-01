@@ -47,16 +47,19 @@ function getHeroes() {
                     array = resp.data;
                     array.forEach(function (element) {
                         var div = document.createElement("div");
-                        var p = document.createElement("p");
+                        var pName = document.createElement("p");
+                        var pDesc = document.createElement("p");
+                        pName.setAttribute('class', 'Name');
+                        pDesc.setAttribute('class', 'Desc');
                         var btnMod = document.createElement("button");
                         var img = document.createElement("img");
-                        var content = (element.name + " " + element.shortDescription);
                         btnMod.textContent = "Modification";
-                        p.textContent = content;
+                        pName.textContent = element.name;
+                        pDesc.textContent = element.shortDescription;
                         document.querySelector('main').appendChild(div).appendChild(img);
                         img.src = "data: image / gif; base64," + element.image;
-                        document.querySelector('main').appendChild(div).appendChild(p);
-                        document.querySelector('main').appendChild(div).appendChild(btnMod);
+                        document.querySelector('main').appendChild(div).appendChild(pName);
+                        document.querySelector('main').appendChild(div).appendChild(pDesc);
                     });
                     return [2 /*return*/];
             }
@@ -64,7 +67,8 @@ function getHeroes() {
     });
 }
 var btnAdd = document.createElement("button");
-btnAdd.textContent = "ajouter un personnage";
+btnAdd.textContent = "Create Character";
+btnAdd.setAttribute('class', 'btnAdd');
 btnAdd.addEventListener("click", function () {
     function openForm() {
         document.getElementById("myForm").style.display = "block";
@@ -79,7 +83,9 @@ closeForm.addEventListener("click", function () {
     }
     closeForm();
 });
+closeForm.setAttribute('class', 'closeFormBtn');
 var btnSubmit = document.createElement("button");
+btnSubmit.setAttribute('class', 'btnSubmit');
 btnSubmit.textContent = "Submit";
 btnSubmit.addEventListener("click", function () {
     //! ici 

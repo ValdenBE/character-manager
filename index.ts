@@ -8,28 +8,28 @@ async function getHeroes() {
     array.forEach((element: { name: string; shortDescription: string; image: string; }) => {
 
         let div = document.createElement("div")
-        let p = document.createElement("p")
-        
+        let pName = document.createElement("p")
+        let pDesc = document.createElement("p")
+        pName.setAttribute('class', 'Name');
+        pDesc.setAttribute('class', 'Desc')
+
         let btnMod = document.createElement("button")
         let img = document.createElement("img")
 
-        let content = (element.name + " " + element.shortDescription)
         btnMod.textContent = "Modification"
-        p.textContent = content
+        pName.textContent = element.name
+        pDesc.textContent = element.shortDescription
         document.querySelector('main').appendChild(div).appendChild(img)
         img.src = "data: image / gif; base64," + element.image
 
-        document.querySelector('main').appendChild(div).appendChild(p)
-
-        document.querySelector('main').appendChild(div).appendChild(btnMod)
-
-
-
+        document.querySelector('main').appendChild(div).appendChild(pName)
+        document.querySelector('main').appendChild(div).appendChild(pDesc)
 
     });
 }
 let btnAdd = document.createElement("button")
-btnAdd.textContent="ajouter un personnage"
+btnAdd.textContent="Create Character"
+btnAdd.setAttribute('class', 'btnAdd')
 btnAdd.addEventListener("click", () => {
     function openForm() {
         document.getElementById("myForm").style.display = "block";
@@ -44,11 +44,14 @@ closeForm.addEventListener("click", ()=>{
     }
     closeForm()
 })
+closeForm.setAttribute('class', 'closeFormBtn')
 
 let btnSubmit = document.createElement("button")
+btnSubmit.setAttribute('class', 'btnSubmit')
 btnSubmit.textContent="Submit"
 btnSubmit.addEventListener("click", ()=>{
 //! ici 
+
 })
 
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit)

@@ -5,26 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Play&display=swap" rel="stylesheet">
     <title></title>
 </head>
 
 <body>
-    <header></header>
+    <header><p class="title">Character-Manager</p></header>
     <main>
         <div class="form-popup" id="myForm">
-                <form id="test" method="post">
-                        <label for="name">Name</label>
+                <form class="form" id="form-content" method="post">
+                    <p class="popupName">New Character</p>
+                        <label for="name">Name :</label>
                         <input class="form-control" type="text"            name="name" id="name" />
-                        <label for="shortDesc">Short         Description</label>
+                        <label for="shortDesc">Short Description :</label>
                         <input class="form-control" type="text" name="shortDesc" id="shortDesc" />
-                        <label for="fullDesc">Full Description</label>
+                        <label for="fullDesc">Full Description :</label>
                         <input class="form-control" type="text" name="fullDesc" id="fulDesc" />
-                        <label for="pict">Picture</label>
+                        <label for="pict">Picture :</label>
                         <input class="form-control" type="text" name="pict" id="pict" />
                      </form>
-                     <pre id="output"></pre>
                      
+                     <pre id="output"></pre>  
         </div>
     </main>
    
