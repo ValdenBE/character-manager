@@ -49,17 +49,17 @@ function getHeroes() {
                     array.forEach(function (element) {
                         var div = document.createElement("div");
                         var p = document.createElement("p");
-                        var btnView = document.createElement("button");
+                        var btnAdd = document.createElement("button");
                         var btnMod = document.createElement("button");
                         var img = document.createElement("img");
                         var content = (element.name + " " + element.shortDescription);
-                        btnView.textContent = "View";
+                        btnAdd.textContent = "Add";
                         btnMod.textContent = "Modification";
                         p.textContent = content;
                         document.body.appendChild(div).appendChild(img);
                         img.src = "data: image / gif; base64," + element.image;
                         document.body.appendChild(div).appendChild(p);
-                        document.body.appendChild(div).appendChild(btnView);
+                        document.body.appendChild(div).appendChild(btnAdd);
                         document.body.appendChild(div).appendChild(btnMod);
                     });
                     return [2 /*return*/];

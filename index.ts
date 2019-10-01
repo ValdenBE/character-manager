@@ -10,30 +10,28 @@ async function getHeroes() {
 
         let div = document.createElement("div")
         let p = document.createElement("p")
-        let btnView = document.createElement("button")
+        let btnAdd = document.createElement("button")
         let btnMod = document.createElement("button")
         let img = document.createElement("img")
 
         let content = (element.name + " " + element.shortDescription)
-        btnView.textContent = "View"
+        btnAdd.textContent = "Add"
         btnMod.textContent = "Modification"
         p.textContent = content
         document.body.appendChild(div).appendChild(img)
         img.src = "data: image / gif; base64," + element.image
 
         document.body.appendChild(div).appendChild(p)
-        document.body.appendChild(div).appendChild(btnView)
+        document.body.appendChild(div).appendChild(btnAdd)
 
         document.body.appendChild(div).appendChild(btnMod)
 
 
 
 
-
-
-
     });
 }
+
 
 
 getHeroes();
