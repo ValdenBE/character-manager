@@ -36,6 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var axios = require('axios');
 var api = 'https://character-database.becode.xyz';
+var btnSubmit = document.createElement("button");
+var checker = false;
 function getHeroes() {
     return __awaiter(this, void 0, void 0, function () {
         var resp, array;
@@ -47,27 +49,30 @@ function getHeroes() {
                     array = resp.data;
                     array.forEach(function (element) {
                         var div = document.createElement("div");
-                        div.setAttribute('type', 'button');
+                        var img = document.createElement("img");
                         var pName = document.createElement("p");
                         var pDesc = document.createElement("p");
+                        div.setAttribute('type', 'button');
                         pName.setAttribute('class', 'Name');
                         pDesc.setAttribute('class', 'Desc');
-                        var btnMod = document.createElement("button");
-                        var img = document.createElement("img");
-                        btnMod.textContent = "Modification";
                         pName.textContent = element.name;
                         pDesc.textContent = element.shortDescription;
-                        document.querySelector('main').appendChild(div).appendChild(img);
                         img.src = "data: image / gif; base64," + element.image;
                         document.querySelector('main').appendChild(div).appendChild(pName);
                         document.querySelector('main').appendChild(div).appendChild(pDesc);
+                        document.querySelector('main').appendChild(div).appendChild(img);
                         div.addEventListener("click", function () {
-                            function openInfos() {
-                                document.getElementById("Infos").style.display = "flex";
-                                document.getElementsByClassName("contentData")[0].textContent = element.name;
-                                document.getElementsByClassName("contentData")[1].textContent = element.shortDescription;
+                            checker = false;
+                            function openForm() {
+                                document.getElementById("myForm").style.display = "block";
                             }
-                            openInfos();
+                            openForm();
+                            btnSubmit.textContent = "Update";
+                            document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+                            document.getElementById("name").setAttribute('value', element.name);
+                            document.getElementById("shortDesc").setAttribute('value', element.shortDescription);
+                            document.getElementById("fulDesc").setAttribute('value', element.description);
+                            document.getElementById("pict").setAttribute('value', element.image);
                         });
                     });
                     return [2 /*return*/];
@@ -76,78 +81,107 @@ function getHeroes() {
     });
 }
 getHeroes();
-var closeInfos = document.createElement("button");
-closeInfos.textContent = "Close";
-closeInfos.addEventListener("click", function () {
-    function closeInfos() {
-        document.getElementById("Infos").style.display = "none";
-    }
-    closeInfos();
-});
-closeInfos.setAttribute('class', 'closeFormBtn');
+//Create Button
 var btnAdd = document.createElement("button");
-btnAdd.textContent = "Create Character";
 btnAdd.setAttribute('class', 'btnAdd');
+btnAdd.textContent = "Create Character";
+document.querySelector('header').appendChild(btnAdd);
 btnAdd.addEventListener("click", function () {
+    checker = true;
     function openForm() {
         document.getElementById("myForm").style.display = "block";
     }
     openForm();
+    btnSubmit.textContent = "Submit";
+    document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+    document.getElementById("name").setAttribute('value', "");
+    document.getElementById("pict").setAttribute('value', "");
+    document.getElementById("fulDesc").setAttribute('value', "");
+    document.getElementById("shortDesc").setAttribute('value', "");
+    document.getElementsByClassName("popupName")[0].textContent = 'Create Character';
 });
+//Close Button
 var closeForm = document.createElement("button");
+closeForm.setAttribute('class', 'closeFormBtn');
 closeForm.textContent = "Close";
+document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
 closeForm.addEventListener("click", function () {
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
     }
     closeForm();
 });
-closeForm.setAttribute('class', 'closeFormBtn');
-var btnSubmit = document.createElement("button");
+//Submit/Update button
 btnSubmit.setAttribute('class', 'btnSubmit');
-btnSubmit.textContent = "Submit";
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
-document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
-document.getElementsByClassName('infos-popup')[0].appendChild(closeInfos);
-document.querySelector('header').appendChild(btnAdd);
-var inputName = document.getElementById("name");
-var inputShortDesc = document.getElementById("shortDesc");
-var inputFullDesc = document.getElementById("fulDesc");
-var inputImg = document.getElementById("pict");
 btnSubmit.addEventListener("click", function () {
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
     }
-    closeForm();
-    function postUser() {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log("testum");
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, axios.post(api + '/characters', {
-                                name: inputName.value,
-                                shortDescription: inputShortDesc.value,
-                                description: inputFullDesc.value,
-                                image: inputImg.value
-                            })];
-                    case 2:
-                        response = _a.sent();
-                        console.log(response.data);
-                        window.location.href = window.location.href;
-                        return [2 /*return*/, response];
-                    case 3:
-                        error_1 = _a.sent();
-                        console.error(error_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
+    if (checker == true) {
+        var inputName_1 = document.getElementById("name");
+        var inputShortDesc_1 = document.getElementById("shortDesc");
+        var inputFullDesc_1 = document.getElementById("fulDesc");
+        var inputImg_1 = document.getElementById("pict");
+        function postUser() {
+            return __awaiter(this, void 0, void 0, function () {
+                var response, error_1;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            _a.trys.push([0, 2, , 3]);
+                            return [4 /*yield*/, axios.post(api + '/characters', {
+                                    name: inputName_1.value,
+                                    shortDescription: inputShortDesc_1.value,
+                                    description: inputFullDesc_1.value,
+                                    image: inputImg_1.value
+                                })];
+                        case 1:
+                            response = _a.sent();
+                            console.log(response.data);
+                            window.location.href = window.location.href;
+                            return [2 /*return*/, response];
+                        case 2:
+                            error_1 = _a.sent();
+                            console.error(error_1);
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/];
+                    }
+                });
             });
-        });
+        }
+        postUser();
+        closeForm();
     }
-    postUser();
+    else {
+        closeForm();
+        alert(checker);
+    }
 });
+function updateUser() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.put(api + '/characters', {
+                            name: inputName.value,
+                            shortDescription: inputShortDesc.value,
+                            description: inputFullDesc.value,
+                            image: inputImg.value
+                        })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response.data);
+                    window.location.href = window.location.href;
+                    return [2 /*return*/, response];
+                case 2:
+                    error_2 = _a.sent();
+                    console.error(error_2);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
