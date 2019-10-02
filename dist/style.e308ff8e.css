@@ -99,7 +99,7 @@ p {
 }
 
 .form-popup,
-.infos-popup {
+.view-popup {
     display: none;
     position: fixed;
     z-index: 1;
@@ -112,7 +112,7 @@ p {
     text-align: center;
 }
 
-#form-content {
+#form-content, #view-content {
     width: 45%;
     height: auto;
     background-color: #485665;
@@ -125,7 +125,10 @@ p {
 }
 
 .closeFormBtn,
-.btnSubmit {
+.btnSubmit,
+.deleteBtn,
+.ModifyBtn,
+.closeViewBtn {
     background: none;
     border-radius: 15px;
     border: 2px solid white;
@@ -168,6 +171,26 @@ input {
     justify-content: center;
     display: flex;
     border: 1px solid white;
+}
+.charName{
+    font-family: 'Lobster', cursive;
+    color: white;
+    text-shadow: 1px 1px 1px #1E3231;
+    font-size: 100px;
+    margin-top: -50px;
+    margin-bottom: 0px;
+}
+.charSmallDesc{
+    font-family: 'Play', sans-serif;
+    font-size: 41px;
+    text-shadow: 3px 2px #1E3231;
+    margin: 0;
+    color: white;
+    margin-top: -3px;
+    
+}
+.charDesc{
+    font-family: 'Play', sans-serif;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
