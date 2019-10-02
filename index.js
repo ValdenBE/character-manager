@@ -47,16 +47,28 @@ function getHeroes() {
                     array = resp.data;
                     array.forEach(function (element) {
                         var div = document.createElement("div");
-                        var p = document.createElement("p");
+                        div.setAttribute('type', 'button');
+                        var pName = document.createElement("p");
+                        var pDesc = document.createElement("p");
+                        pName.setAttribute('class', 'Name');
+                        pDesc.setAttribute('class', 'Desc');
                         var btnMod = document.createElement("button");
                         var img = document.createElement("img");
-                        var content = (element.name + " " + element.shortDescription);
                         btnMod.textContent = "Modification";
-                        p.textContent = content;
+                        pName.textContent = element.name;
+                        pDesc.textContent = element.shortDescription;
                         document.querySelector('main').appendChild(div).appendChild(img);
                         img.src = "data: image / gif; base64," + element.image;
-                        document.querySelector('main').appendChild(div).appendChild(p);
-                        document.querySelector('main').appendChild(div).appendChild(btnMod);
+                        document.querySelector('main').appendChild(div).appendChild(pName);
+                        document.querySelector('main').appendChild(div).appendChild(pDesc);
+                        div.addEventListener("click", function () {
+                            function openInfos() {
+                                document.getElementById("Infos").style.display = "flex";
+                                document.getElementsByClassName("contentData")[0].textContent = element.name;
+                                document.getElementsByClassName("contentData")[1].textContent = element.shortDescription;
+                            }
+                            openInfos();
+                        });
                     });
                     return [2 /*return*/];
             }
@@ -64,8 +76,18 @@ function getHeroes() {
     });
 }
 getHeroes();
+var closeInfos = document.createElement("button");
+closeInfos.textContent = "Close";
+closeInfos.addEventListener("click", function () {
+    function closeInfos() {
+        document.getElementById("Infos").style.display = "none";
+    }
+    closeInfos();
+});
+closeInfos.setAttribute('class', 'closeFormBtn');
 var btnAdd = document.createElement("button");
-btnAdd.textContent = "ajouter un personnage";
+btnAdd.textContent = "Create Character";
+btnAdd.setAttribute('class', 'btnAdd');
 btnAdd.addEventListener("click", function () {
     function openForm() {
         document.getElementById("myForm").style.display = "block";
@@ -74,10 +96,19 @@ btnAdd.addEventListener("click", function () {
 });
 var closeForm = document.createElement("button");
 closeForm.textContent = "Close";
+closeForm.addEventListener("click", function () {
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    closeForm();
+});
+closeForm.setAttribute('class', 'closeFormBtn');
 var btnSubmit = document.createElement("button");
+btnSubmit.setAttribute('class', 'btnSubmit');
 btnSubmit.textContent = "Submit";
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
 document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+document.getElementsByClassName('infos-popup')[0].appendChild(closeInfos);
 document.querySelector('header').appendChild(btnAdd);
 var inputName = document.getElementById("name");
 var inputShortDesc = document.getElementById("shortDesc");
@@ -112,7 +143,7 @@ btnSubmit.addEventListener("click", function () {
                             })];
                     case 2:
                         response = _a.sent();
-                        console.log(response.data);
+                        window.location.href = window.location.href;
                         return [2 /*return*/, response];
                     case 3:
                         error_1 = _a.sent();
