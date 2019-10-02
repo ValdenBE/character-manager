@@ -80,8 +80,6 @@ button {
     margin-right: 20px;
 }
 
-img {}
-
 p {
     text-align: center;
 }
@@ -99,8 +97,7 @@ p {
     width: 280px;
 }
 
-.form-popup,
-.infos-popup {
+.form-popup, .infos-popup {
     display: none;
     position: fixed;
     z-index: 1;
@@ -114,7 +111,7 @@ p {
 }
 
 #form-content {
-    width: 40%;
+    width: 45%;
     height: auto;
     background-color: #485665;
     margin: auto;
@@ -125,8 +122,7 @@ p {
     border: 1px solid white;
 }
 
-.closeFormBtn,
-.btnSubmit {
+.closeFormBtn, .btnSubmit {
     background: none;
     border-radius: 15px;
     border: 2px solid white;
@@ -161,7 +157,7 @@ input {
 }
 
 .infos-content {
-    width: 40%;
+    width: 45%;
     height: auto;
     background-color: #485665;
     margin: auto;
@@ -170,4 +166,10 @@ input {
     justify-content: center;
     display: flex;
     border: 1px solid white;
+}
+
+#dataImg {
+    color: rgb(248, 248, 248);
+    font-family: 'Lobster', cursive;
+    margin-left: 15%;
 }

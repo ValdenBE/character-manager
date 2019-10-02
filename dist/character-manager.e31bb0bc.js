@@ -1974,149 +1974,56 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
-var axios = require('axios');
+(function (window) {
+  var axios = require('axios');
 
-var api = 'https://character-database.becode.xyz';
+  var api = 'https://character-database.becode.xyz';
+  var btnSubmit = document.createElement("button");
+  var checker = false;
 
-function getHeroes() {
-  return __awaiter(this, void 0, void 0, function () {
-    var resp, array;
-    return __generator(this, function (_a) {
-      switch (_a.label) {
-        case 0:
-          return [4
-          /*yield*/
-          , axios.get(api + '/characters')];
-
-        case 1:
-          resp = _a.sent();
-          array = resp.data;
-          array.forEach(function (element) {
-            var div = document.createElement("div");
-            div.setAttribute('type', 'button');
-            var pName = document.createElement("p");
-            var pDesc = document.createElement("p");
-            pName.setAttribute('class', 'Name');
-            pDesc.setAttribute('class', 'Desc');
-            var btnMod = document.createElement("button");
-            var img = document.createElement("img");
-            btnMod.textContent = "Modification";
-            pName.textContent = element.name;
-            pDesc.textContent = element.shortDescription;
-            document.querySelector('main').appendChild(div).appendChild(img);
-            img.src = "data: image / gif; base64," + element.image;
-            document.querySelector('main').appendChild(div).appendChild(pName);
-            document.querySelector('main').appendChild(div).appendChild(pDesc);
-            div.addEventListener("click", function () {
-              function openInfos() {
-                document.getElementById("Infos").style.display = "flex";
-                document.getElementsByClassName("contentData")[0].textContent = element.name;
-                document.getElementsByClassName("contentData")[1].textContent = element.shortDescription;
-              }
-
-              openInfos();
-            });
-          });
-          return [2
-          /*return*/
-          ];
-      }
-    });
-  });
-}
-
-getHeroes();
-var closeInfos = document.createElement("button");
-closeInfos.textContent = "Close";
-closeInfos.addEventListener("click", function () {
-  function closeInfos() {
-    document.getElementById("Infos").style.display = "none";
-  }
-
-  closeInfos();
-});
-closeInfos.setAttribute('class', 'closeFormBtn');
-var btnAdd = document.createElement("button");
-btnAdd.textContent = "Create Character";
-btnAdd.setAttribute('class', 'btnAdd');
-btnAdd.addEventListener("click", function () {
-  function openForm() {
-    document.getElementById("myForm").style.display = "block";
-  }
-
-  openForm();
-});
-var closeForm = document.createElement("button");
-closeForm.textContent = "Close";
-closeForm.addEventListener("click", function () {
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
-
-  closeForm();
-});
-closeForm.setAttribute('class', 'closeFormBtn');
-var btnSubmit = document.createElement("button");
-btnSubmit.setAttribute('class', 'btnSubmit');
-btnSubmit.textContent = "Submit";
-document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
-document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
-document.getElementsByClassName('infos-popup')[0].appendChild(closeInfos);
-document.querySelector('header').appendChild(btnAdd);
-var inputName = document.getElementById("name");
-var inputShortDesc = document.getElementById("shortDesc");
-var inputFullDesc = document.getElementById("fulDesc");
-var inputImg = document.getElementById("pict");
-closeForm.addEventListener("click", function () {
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
-
-  closeForm();
-});
-btnSubmit.addEventListener("click", function () {
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
-
-  closeForm();
-
-  function postUser() {
+  function getHeroes() {
     return __awaiter(this, void 0, void 0, function () {
-      var response, error_1;
+      var resp, array;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
-            console.log("testum");
-            _a.label = 1;
-
-          case 1:
-            _a.trys.push([1, 3,, 4]);
-
             return [4
             /*yield*/
-            , axios.post(api + '/characters', {
-              name: inputName.value,
-              shortDescription: inputShortDesc.value,
-              description: inputFullDesc.value,
-              image: inputImg.value
-            })];
+            , axios.get(api + '/characters')];
 
-          case 2:
-            response = _a.sent();
-            window.location.href = window.location.href;
-            return [2
-            /*return*/
-            , response];
+          case 1:
+            resp = _a.sent();
+            array = resp.data;
+            array.forEach(function (element) {
+              var div = document.createElement("div");
+              var img = document.createElement("img");
+              var pName = document.createElement("p");
+              var pDesc = document.createElement("p");
+              div.setAttribute('type', 'button');
+              pName.setAttribute('class', 'Name');
+              pDesc.setAttribute('class', 'Desc');
+              pName.textContent = element.name;
+              pDesc.textContent = element.shortDescription;
+              img.src = "data: image / gif; base64," + element.image;
+              document.querySelector('main').appendChild(div).appendChild(pName);
+              document.querySelector('main').appendChild(div).appendChild(pDesc);
+              document.querySelector('main').appendChild(div).appendChild(img);
+              div.addEventListener("click", function () {
+                checker = false;
 
-          case 3:
-            error_1 = _a.sent();
-            console.error(error_1);
-            return [3
-            /*break*/
-            , 4];
+                function openForm() {
+                  document.getElementById("myForm").style.display = "block";
+                }
 
-          case 4:
+                openForm();
+                btnSubmit.textContent = "Update";
+                document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+                document.getElementById("name").setAttribute('value', element.name);
+                document.getElementById("shortDesc").setAttribute('value', element.shortDescription);
+                document.getElementById("fulDesc").setAttribute('value', element.description);
+                document.getElementById("pict").setAttribute('value', element.image);
+              });
+            });
             return [2
             /*return*/
             ];
@@ -2125,18 +2032,129 @@ btnSubmit.addEventListener("click", function () {
     });
   }
 
-  if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
-    var openForm = function openForm() {
+  getHeroes(); //Create Button
+
+  var btnAdd = document.createElement("button");
+  btnAdd.setAttribute('class', 'btnAdd');
+  btnAdd.textContent = "Create Character";
+  document.querySelector('header').appendChild(btnAdd);
+  btnAdd.addEventListener("click", function () {
+    checker = true;
+
+    function openForm() {
       document.getElementById("myForm").style.display = "block";
+    }
+
+    openForm();
+    btnSubmit.textContent = "Submit";
+    document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+    document.getElementById("name").setAttribute('value', "");
+    document.getElementById("pict").setAttribute('value', "");
+    document.getElementById("fulDesc").setAttribute('value', "");
+    document.getElementById("shortDesc").setAttribute('value', "");
+    document.getElementsByClassName("popupName")[0].textContent = 'Create Character';
+  }); //Close Button
+
+  var closeForm = document.createElement("button");
+  closeForm.setAttribute('class', 'closeFormBtn');
+  closeForm.textContent = "Close";
+  document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+  closeForm.addEventListener("click", function () {
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    closeForm();
+  }); //Submit/Update button
+
+  var inputName = document.getElementById("name");
+  var inputShortDesc = document.getElementById("shortDesc");
+  var inputFullDesc = document.getElementById("fulDesc");
+  var inputImg = document.getElementById("pict");
+  inputImg.style.display = "none";
+  btnSubmit.setAttribute('class', 'btnSubmit');
+  document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
+  btnSubmit.addEventListener("click", function () {
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    if (checker == true) {
+      var postUser = function postUser() {
+        return __awaiter(this, void 0, void 0, function () {
+          var response, error_1;
+          return __generator(this, function (_a) {
+            switch (_a.label) {
+              case 0:
+                _a.trys.push([0, 2,, 3]);
+
+                return [4
+                /*yield*/
+                , axios.post(api + '/characters', {
+                  name: inputName.value,
+                  shortDescription: inputShortDesc.value,
+                  description: inputFullDesc.value,
+                  image: inputImg.value
+                })];
+
+              case 1:
+                response = _a.sent();
+                console.log(response.data);
+                window.location.href = window.location.href;
+                return [2
+                /*return*/
+                , response];
+
+              case 2:
+                error_1 = _a.sent();
+                console.error(error_1);
+                return [3
+                /*break*/
+                , 3];
+
+              case 3:
+                return [2
+                /*return*/
+                ];
+            }
+          });
+        });
+      };
+
+      if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
+        var openForm = function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        };
+
+        console.error("Remplissez tout les champs pour valider !");
+        alert("Remplissez tout les champs pour valider !");
+        openForm();
+      } else {
+        postUser();
+        closeForm();
+      }
+    } else {
+      closeForm();
+      alert(checker);
+    }
+  });
+
+  function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+      var str = reader.result;
+      str = str.split(",")[1];
+      inputImg.value = str;
+      console.log('RESULT', reader.result);
     };
 
-    console.error("Remplissez tout les champs pour valider !");
-    alert("Remplissez tout les champs pour valider !");
-    openForm();
-  } else {
-    postUser();
+    reader.readAsDataURL(file);
   }
-});
+
+  window.encodeImageFileAsURL = encodeImageFileAsURL;
+})(window);
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2165,7 +2183,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40395" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34551" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
