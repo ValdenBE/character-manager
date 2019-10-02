@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -36,7 +36,9 @@
                 <textarea class="form-control" name="fullDesc" id="fulDesc"></textarea>
                 <label for="pict">Picture :</label>
                 <input class="form-control" type="text" name="pict" id="pict" />
+                <input type="file" id="dataImg" onchange="encodeImageFileAsURL(this)" />
             </form>
+
 
             <pre id="output"></pre>
         </div>

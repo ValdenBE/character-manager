@@ -1,4 +1,4 @@
-
+((window) => {
 const axios = require('axios');
 const api = 'https://character-database.becode.xyz';
 let btnSubmit = document.createElement("button")
@@ -189,7 +189,11 @@ closeForm.addEventListener("click", ()=>{
 })
 
 //Submit/Update button
-
+let inputName = <HTMLInputElement>document.getElementById("name");
+    let inputShortDesc = <HTMLInputElement>document.getElementById("shortDesc");
+    let inputFullDesc = <HTMLInputElement>document.getElementById("fulDesc");
+    let inputImg = <HTMLInputElement>document.getElementById("pict");
+    inputImg.style.display = "none";
 btnSubmit.setAttribute('class', 'btnSubmit')
 document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit)
 btnSubmit.addEventListener("click", () => {
@@ -230,6 +234,19 @@ btnSubmit.addEventListener("click", () => {
         }
     }
 });
+function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        let str = <string>reader.result;
+        str = str.split(",")[1]
 
+        inputImg.value = str;
+        console.log('RESULT', reader.result)
 
+    }
+    reader.readAsDataURL(file);
 
+}
+window.encodeImageFileAsURL = encodeImageFileAsURL;
+})(window);

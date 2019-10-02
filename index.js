@@ -34,248 +34,267 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var axios = require('axios');
-var api = 'https://character-database.becode.xyz';
-var btnSubmit = document.createElement("button");
-var ModifyBtn = document.createElement("button");
-ModifyBtn.setAttribute('class', 'ModifyBtn');
-ModifyBtn.textContent = "Modify";
-document.getElementsByClassName('view-popup')[0].appendChild(ModifyBtn);
-var checker = false;
-function getHeroes() {
-    return __awaiter(this, void 0, void 0, function () {
-        var resp, array;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get(api + '/characters')];
-                case 1:
-                    resp = _a.sent();
-                    array = resp.data;
-                    array.forEach(function (element) {
-                        var div = document.createElement("div");
-                        var img = document.createElement("img");
-                        img.src = "data: image / gif; base64," + element.image;
-                        var pName = document.createElement("p");
-                        var pDesc = document.createElement("p");
-                        div.setAttribute('type', 'button');
-                        pName.setAttribute('class', 'Name');
-                        pDesc.setAttribute('class', 'Desc');
-                        pName.textContent = element.name;
-                        pDesc.textContent = element.shortDescription;
-                        document.querySelector('main').appendChild(div).appendChild(pName);
-                        document.querySelector('main').appendChild(div).appendChild(pDesc);
-                        document.querySelector('main').appendChild(div).appendChild(img);
-                        function closeView() {
-                            document.getElementById("view").style.display = "none";
-                        }
-                        div.addEventListener("click", function () {
-                            function openView() {
-                                var showdown = require('showdown');
-                                var converter = new showdown.Converter();
-                                var html = converter.makeHtml(element.description);
-                                document.getElementById("view").style.display = "block";
-                                document.getElementsByClassName("charName")[0].textContent = element.name;
-                                document.getElementsByClassName("charSmallDesc")[0].textContent = element.shortDescription;
-                                document.getElementsByClassName("charDesc")[0].innerHTML = html;
+(function (window) {
+    var axios = require('axios');
+    var api = 'https://character-database.becode.xyz';
+    var btnSubmit = document.createElement("button");
+    var ModifyBtn = document.createElement("button");
+    ModifyBtn.setAttribute('class', 'ModifyBtn');
+    ModifyBtn.textContent = "Modify";
+    document.getElementsByClassName('view-popup')[0].appendChild(ModifyBtn);
+    var checker = false;
+    function getHeroes() {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, array;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, axios.get(api + '/characters')];
+                    case 1:
+                        resp = _a.sent();
+                        array = resp.data;
+                        array.forEach(function (element) {
+                            var div = document.createElement("div");
+                            var img = document.createElement("img");
+                            img.src = "data: image / gif; base64," + element.image;
+                            var pName = document.createElement("p");
+                            var pDesc = document.createElement("p");
+                            div.setAttribute('type', 'button');
+                            pName.setAttribute('class', 'Name');
+                            pDesc.setAttribute('class', 'Desc');
+                            pName.textContent = element.name;
+                            pDesc.textContent = element.shortDescription;
+                            document.querySelector('main').appendChild(div).appendChild(pName);
+                            document.querySelector('main').appendChild(div).appendChild(pDesc);
+                            document.querySelector('main').appendChild(div).appendChild(img);
+                            function closeView() {
+                                document.getElementById("view").style.display = "none";
                             }
-                            openView();
-                            ModifyBtn.addEventListener("click", function () {
-                                checker = false;
-                                function openForm() {
-                                    document.getElementById("myForm").style.display = "block";
+                            div.addEventListener("click", function () {
+                                function openView() {
+                                    var showdown = require('showdown');
+                                    var converter = new showdown.Converter();
+                                    var html = converter.makeHtml(element.description);
+                                    document.getElementById("view").style.display = "block";
+                                    document.getElementsByClassName("charName")[0].textContent = element.name;
+                                    document.getElementsByClassName("charSmallDesc")[0].textContent = element.shortDescription;
+                                    document.getElementsByClassName("charDesc")[0].innerHTML = html;
                                 }
-                                closeView();
-                                openForm();
-                                deleteBtn.addEventListener("click", function () {
-                                    function deleteBtn() {
-                                        return __awaiter(this, void 0, void 0, function () {
-                                            return __generator(this, function (_a) {
-                                                switch (_a.label) {
-                                                    case 0: return [4 /*yield*/, axios["delete"](api + '/characters/' + element.id)];
-                                                    case 1:
-                                                        _a.sent();
-                                                        window.location.href = window.location.href;
-                                                        return [2 /*return*/];
-                                                }
-                                            });
-                                        });
+                                openView();
+                                ModifyBtn.addEventListener("click", function () {
+                                    checker = false;
+                                    function openForm() {
+                                        document.getElementById("myForm").style.display = "block";
                                     }
-                                    function closeForm() {
-                                        document.getElementById("myForm").style.display = "none";
-                                    }
-                                    var isdeleted = confirm("Are you sure you want to delete it ?");
-                                    if (isdeleted == true) {
-                                        deleteBtn();
-                                        closeForm();
-                                    }
-                                });
-                                btnSubmit.addEventListener("click", function () {
-                                    function closeForm() {
-                                        document.getElementById("myForm").style.display = "none";
-                                    }
-                                    if (checker == false) {
-                                        var inputName = document.getElementById("name");
-                                        var inputShortDesc = document.getElementById("shortDesc");
-                                        var inputFullDesc = document.getElementById("fulDesc");
-                                        var inputImg = document.getElementById("pict");
-                                        function updateUser() {
+                                    closeView();
+                                    openForm();
+                                    deleteBtn.addEventListener("click", function () {
+                                        function deleteBtn() {
                                             return __awaiter(this, void 0, void 0, function () {
-                                                var inputName, inputShortDesc, inputFullDesc, inputImg, id, response, error_1;
                                                 return __generator(this, function (_a) {
                                                     switch (_a.label) {
-                                                        case 0:
-                                                            inputName = document.getElementById("name");
-                                                            inputShortDesc = document.getElementById("shortDesc");
-                                                            inputFullDesc = document.getElementById("fulDesc");
-                                                            inputImg = document.getElementById("pict");
-                                                            id = element.id;
-                                                            _a.label = 1;
+                                                        case 0: return [4 /*yield*/, axios["delete"](api + '/characters/' + element.id)];
                                                         case 1:
-                                                            _a.trys.push([1, 3, , 4]);
-                                                            return [4 /*yield*/, axios.put(api + '/characters/' + id, {
-                                                                    name: inputName.value,
-                                                                    shortDescription: inputShortDesc.value,
-                                                                    description: inputFullDesc.value,
-                                                                    image: inputImg.value
-                                                                })];
-                                                        case 2:
-                                                            response = _a.sent();
-                                                            console.log(response.data);
+                                                            _a.sent();
                                                             window.location.href = window.location.href;
-                                                            return [2 /*return*/, response];
-                                                        case 3:
-                                                            error_1 = _a.sent();
-                                                            console.error(error_1);
-                                                            return [3 /*break*/, 4];
-                                                        case 4: return [2 /*return*/];
+                                                            return [2 /*return*/];
                                                     }
                                                 });
                                             });
                                         }
-                                        if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
-                                            console.error("Remplissez tout les champs pour valider !");
-                                            alert("Remplissez tout les champs pour valider !");
-                                            function openForm() {
-                                                document.getElementById("myForm").style.display = "block";
-                                            }
-                                            openForm();
+                                        function closeForm() {
+                                            document.getElementById("myForm").style.display = "none";
                                         }
-                                        else {
-                                            updateUser();
+                                        var isdeleted = confirm("Are you sure you want to delete it ?");
+                                        if (isdeleted == true) {
+                                            deleteBtn();
                                             closeForm();
                                         }
-                                    }
+                                    });
+                                    btnSubmit.addEventListener("click", function () {
+                                        function closeForm() {
+                                            document.getElementById("myForm").style.display = "none";
+                                        }
+                                        if (checker == false) {
+                                            var inputName_1 = document.getElementById("name");
+                                            var inputShortDesc_1 = document.getElementById("shortDesc");
+                                            var inputFullDesc_1 = document.getElementById("fulDesc");
+                                            var inputImg_1 = document.getElementById("pict");
+                                            function updateUser() {
+                                                return __awaiter(this, void 0, void 0, function () {
+                                                    var inputName, inputShortDesc, inputFullDesc, inputImg, id, response, error_1;
+                                                    return __generator(this, function (_a) {
+                                                        switch (_a.label) {
+                                                            case 0:
+                                                                inputName = document.getElementById("name");
+                                                                inputShortDesc = document.getElementById("shortDesc");
+                                                                inputFullDesc = document.getElementById("fulDesc");
+                                                                inputImg = document.getElementById("pict");
+                                                                id = element.id;
+                                                                _a.label = 1;
+                                                            case 1:
+                                                                _a.trys.push([1, 3, , 4]);
+                                                                return [4 /*yield*/, axios.put(api + '/characters/' + id, {
+                                                                        name: inputName.value,
+                                                                        shortDescription: inputShortDesc.value,
+                                                                        description: inputFullDesc.value,
+                                                                        image: inputImg.value
+                                                                    })];
+                                                            case 2:
+                                                                response = _a.sent();
+                                                                console.log(response.data);
+                                                                window.location.href = window.location.href;
+                                                                return [2 /*return*/, response];
+                                                            case 3:
+                                                                error_1 = _a.sent();
+                                                                console.error(error_1);
+                                                                return [3 /*break*/, 4];
+                                                            case 4: return [2 /*return*/];
+                                                        }
+                                                    });
+                                                });
+                                            }
+                                            if (inputName_1.value == "" || inputShortDesc_1.value == "" || inputFullDesc_1.value == "" || inputImg_1.value == "") {
+                                                console.error("Remplissez tout les champs pour valider !");
+                                                alert("Remplissez tout les champs pour valider !");
+                                                function openForm() {
+                                                    document.getElementById("myForm").style.display = "block";
+                                                }
+                                                openForm();
+                                            }
+                                            else {
+                                                updateUser();
+                                                closeForm();
+                                            }
+                                        }
+                                    });
+                                    btnSubmit.textContent = "Update";
+                                    document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+                                    document.getElementById("name").setAttribute('value', element.name);
+                                    document.getElementById("shortDesc").setAttribute('value', element.shortDescription);
+                                    var textarea = document.getElementById("fulDesc");
+                                    textarea.setAttribute('placeholder', element.description);
+                                    document.getElementById("pict").setAttribute('value', element.image);
                                 });
-                                btnSubmit.textContent = "Update";
-                                document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
-                                document.getElementById("name").setAttribute('value', element.name);
-                                document.getElementById("shortDesc").setAttribute('value', element.shortDescription);
-                                var textarea = document.getElementById("fulDesc");
-                                textarea.setAttribute('placeholder', element.description);
-                                document.getElementById("pict").setAttribute('value', element.image);
                             });
                         });
-                    });
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-getHeroes();
-var deleteBtn = document.createElement("button");
-deleteBtn.setAttribute('class', 'deleteBtn');
-deleteBtn.textContent = "Delete";
-document.getElementsByClassName('form-popup')[0].appendChild(deleteBtn);
-//Create Button
-var btnAdd = document.createElement("button");
-btnAdd.setAttribute('class', 'btnAdd');
-btnAdd.textContent = "Create Character";
-document.querySelector('header').appendChild(btnAdd);
-btnAdd.addEventListener("click", function () {
-    checker = true;
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
-    openForm();
-    btnSubmit.textContent = "Submit";
-    document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
-    document.getElementById("name").setAttribute('value', "");
-    document.getElementById("pict").setAttribute('value', "");
-    document.getElementById("fulDesc").setAttribute('value', "");
-    document.getElementById("shortDesc").setAttribute('value', "");
-    document.getElementsByClassName("popupName")[0].textContent = 'Create Character';
-});
-//Close Button
-var closeView = document.createElement("button");
-closeView.setAttribute('class', 'closeViewBtn');
-closeView.textContent = "Close";
-document.getElementsByClassName('view-popup')[0].appendChild(closeView);
-closeView.addEventListener("click", function () {
-    function closeView() {
-        document.getElementById("view").style.display = "none";
-    }
-    closeView();
-});
-var closeForm = document.createElement("button");
-closeForm.setAttribute('class', 'closeFormBtn');
-closeForm.textContent = "Close";
-document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
-closeForm.addEventListener("click", function () {
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-    closeForm();
-});
-//Submit/Update button
-btnSubmit.setAttribute('class', 'btnSubmit');
-document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
-btnSubmit.addEventListener("click", function () {
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-    if (checker == true) {
-        var inputName_1 = document.getElementById("name");
-        var inputShortDesc_1 = document.getElementById("shortDesc");
-        var inputFullDesc_1 = document.getElementById("fulDesc");
-        var inputImg_1 = document.getElementById("pict");
-        function postUser() {
-            return __awaiter(this, void 0, void 0, function () {
-                var response, error_2;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 2, , 3]);
-                            return [4 /*yield*/, axios.post(api + '/characters', {
-                                    name: inputName_1.value,
-                                    shortDescription: inputShortDesc_1.value,
-                                    description: inputFullDesc_1.value,
-                                    image: inputImg_1.value
-                                })];
-                        case 1:
-                            response = _a.sent();
-                            console.log(response.data);
-                            window.location.href = window.location.href;
-                            return [2 /*return*/, response];
-                        case 2:
-                            error_2 = _a.sent();
-                            console.error(error_2);
-                            return [3 /*break*/, 3];
-                        case 3: return [2 /*return*/];
-                    }
-                });
+                        return [2 /*return*/];
+                }
             });
-        }
-        if (inputName_1.value == "" || inputShortDesc_1.value == "" || inputFullDesc_1.value == "" || inputImg_1.value == "") {
-            console.error("Remplissez tout les champs pour valider !");
-            alert("Remplissez tout les champs pour valider !");
-            function openForm() {
-                document.getElementById("myForm").style.display = "block";
-            }
-            openForm();
-        }
-        else {
-            postUser();
-            closeForm();
-        }
+        });
     }
-});
+    getHeroes();
+    var deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute('class', 'deleteBtn');
+    deleteBtn.textContent = "Delete";
+    document.getElementsByClassName('form-popup')[0].appendChild(deleteBtn);
+    //Create Button
+    var btnAdd = document.createElement("button");
+    btnAdd.setAttribute('class', 'btnAdd');
+    btnAdd.textContent = "Create Character";
+    document.querySelector('header').appendChild(btnAdd);
+    btnAdd.addEventListener("click", function () {
+        checker = true;
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+        openForm();
+        btnSubmit.textContent = "Submit";
+        document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
+        document.getElementById("name").setAttribute('value', "");
+        document.getElementById("pict").setAttribute('value', "");
+        document.getElementById("fulDesc").setAttribute('value', "");
+        document.getElementById("shortDesc").setAttribute('value', "");
+        document.getElementsByClassName("popupName")[0].textContent = 'Create Character';
+    });
+    //Close Button
+    var closeView = document.createElement("button");
+    closeView.setAttribute('class', 'closeViewBtn');
+    closeView.textContent = "Close";
+    document.getElementsByClassName('view-popup')[0].appendChild(closeView);
+    closeView.addEventListener("click", function () {
+        function closeView() {
+            document.getElementById("view").style.display = "none";
+        }
+        closeView();
+    });
+    var closeForm = document.createElement("button");
+    closeForm.setAttribute('class', 'closeFormBtn');
+    closeForm.textContent = "Close";
+    document.getElementsByClassName('form-popup')[0].appendChild(closeForm);
+    closeForm.addEventListener("click", function () {
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+        closeForm();
+    });
+    //Submit/Update button
+    var inputName = document.getElementById("name");
+    var inputShortDesc = document.getElementById("shortDesc");
+    var inputFullDesc = document.getElementById("fulDesc");
+    var inputImg = document.getElementById("pict");
+    inputImg.style.display = "none";
+    btnSubmit.setAttribute('class', 'btnSubmit');
+    document.getElementsByClassName('form-popup')[0].appendChild(btnSubmit);
+    btnSubmit.addEventListener("click", function () {
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+        if (checker == true) {
+            var inputName_2 = document.getElementById("name");
+            var inputShortDesc_2 = document.getElementById("shortDesc");
+            var inputFullDesc_2 = document.getElementById("fulDesc");
+            var inputImg_2 = document.getElementById("pict");
+            function postUser() {
+                return __awaiter(this, void 0, void 0, function () {
+                    var response, error_2;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                _a.trys.push([0, 2, , 3]);
+                                return [4 /*yield*/, axios.post(api + '/characters', {
+                                        name: inputName_2.value,
+                                        shortDescription: inputShortDesc_2.value,
+                                        description: inputFullDesc_2.value,
+                                        image: inputImg_2.value
+                                    })];
+                            case 1:
+                                response = _a.sent();
+                                console.log(response.data);
+                                window.location.href = window.location.href;
+                                return [2 /*return*/, response];
+                            case 2:
+                                error_2 = _a.sent();
+                                console.error(error_2);
+                                return [3 /*break*/, 3];
+                            case 3: return [2 /*return*/];
+                        }
+                    });
+                });
+            }
+            if (inputName_2.value == "" || inputShortDesc_2.value == "" || inputFullDesc_2.value == "" || inputImg_2.value == "") {
+                console.error("Remplissez tout les champs pour valider !");
+                alert("Remplissez tout les champs pour valider !");
+                function openForm() {
+                    document.getElementById("myForm").style.display = "block";
+                }
+                openForm();
+            }
+            else {
+                postUser();
+                closeForm();
+            }
+        }
+    });
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var str = reader.result;
+            str = str.split(",")[1];
+            inputImg.value = str;
+            console.log('RESULT', reader.result);
+        };
+        reader.readAsDataURL(file);
+    }
+    window.encodeImageFileAsURL = encodeImageFileAsURL;
+})(window);
