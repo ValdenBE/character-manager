@@ -7,7 +7,6 @@ let ModifyBtn = document.createElement("button")
             ModifyBtn.textContent = "Modify"
             document.getElementsByClassName('view-popup')[0].appendChild(ModifyBtn)
             
-            
 let checker = false
 
 async function getHeroes() {
@@ -33,10 +32,13 @@ async function getHeroes() {
         div.addEventListener("click", () => {
             
             function openView() {
+                var showdown  = require('showdown')
+                var converter = new showdown.Converter()
+                var html = converter.makeHtml(element.description)
                 document.getElementById("view").style.display = "block";
                 document.getElementsByClassName("charName")[0].textContent=element.name
                 document.getElementsByClassName("charSmallDesc")[0].textContent=element.shortDescription
-                document.getElementsByClassName("charDesc")[0].textContent=element.description
+                document.getElementsByClassName("charDesc")[0].innerHTML=html
 
                 
             }
@@ -116,7 +118,8 @@ async function getHeroes() {
             document.getElementsByClassName("popupName")[0].textContent='Modify Character'
             document.getElementById("name").setAttribute('value', element.name)
             document.getElementById("shortDesc").setAttribute('value', element.shortDescription)
-            document.getElementById("fulDesc").setAttribute('value', element.description)
+            let textarea = document.getElementById("fulDesc") as HTMLTextAreaElement;
+            textarea.setAttribute('placeholder', element.description)
             document.getElementById("pict").setAttribute('value', element.image)
             })
 

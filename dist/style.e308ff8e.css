@@ -147,9 +147,9 @@ label {
     padding: 10px;
 }
 
-input {
+input, textarea {
     width: 500px !important;
-    font-size: 22px;
+    font-size: 20px;
     margin: auto;
 }
 
@@ -191,6 +191,11 @@ input {
 }
 .charDesc{
     font-family: 'Play', sans-serif;
+}
+
+textarea{
+    height:100px;
+    resize: none;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

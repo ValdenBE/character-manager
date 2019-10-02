@@ -70,10 +70,13 @@ function getHeroes() {
                         }
                         div.addEventListener("click", function () {
                             function openView() {
+                                var showdown = require('showdown');
+                                var converter = new showdown.Converter();
+                                var html = converter.makeHtml(element.description);
                                 document.getElementById("view").style.display = "block";
                                 document.getElementsByClassName("charName")[0].textContent = element.name;
                                 document.getElementsByClassName("charSmallDesc")[0].textContent = element.shortDescription;
-                                document.getElementsByClassName("charDesc")[0].textContent = element.description;
+                                document.getElementsByClassName("charDesc")[0].innerHTML = html;
                             }
                             openView();
                             ModifyBtn.addEventListener("click", function () {
@@ -167,7 +170,8 @@ function getHeroes() {
                                 document.getElementsByClassName("popupName")[0].textContent = 'Modify Character';
                                 document.getElementById("name").setAttribute('value', element.name);
                                 document.getElementById("shortDesc").setAttribute('value', element.shortDescription);
-                                document.getElementById("fulDesc").setAttribute('value', element.description);
+                                var textarea = document.getElementById("fulDesc");
+                                textarea.setAttribute('placeholder', element.description);
                                 document.getElementById("pict").setAttribute('value', element.image);
                             });
                         });
