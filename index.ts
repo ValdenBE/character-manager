@@ -39,7 +39,7 @@ async function getHeroes() {
         });
 
     });
-    
+
 }
 getHeroes();
 
@@ -106,12 +106,22 @@ btnSubmit.addEventListener("click", () => {
                 console.error(error);
             }
         }
-        postUser()
-        closeForm()
+        if (inputName.value == "" || inputShortDesc.value == "" || inputFullDesc.value == "" || inputImg.value == "") {
+            console.error("Remplissez tout les champs pour valider !")
+            alert("Remplissez tout les champs pour valider !")
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+            openForm();
+        } else {
+            postUser();
+            closeForm()
+        }
     }else{
         closeForm();
         alert(checker)
     }
+    
 });
 
 
@@ -127,18 +137,18 @@ btnSubmit.addEventListener("click", () => {
 
 
 
-async function updateUser() {
-    try {
-        const response = await axios.put(api + '/characters', {
-            name: inputName.value,
-            shortDescription: inputShortDesc.value,
-            description: inputFullDesc.value,
-            image: inputImg.value
-        });
-        console.log(response.data);
-        window.location.href=window.location.href
-        return response;
-    } catch (error) {
-        console.error(error);
-    }
-}
+// async function updateUser() {
+//     try {
+//         const response = await axios.put(api + '/characters', {
+//             name: inputName.value,
+//             shortDescription: inputShortDesc.value,
+//             description: inputFullDesc.value,
+//             image: inputImg.value
+//         });
+//         console.log(response.data);
+//         window.location.href=window.location.href
+//         return response;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }

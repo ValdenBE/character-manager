@@ -150,38 +150,36 @@ btnSubmit.addEventListener("click", function () {
                 });
             });
         }
-        postUser();
-        closeForm();
+        if (inputName_1.value == "" || inputShortDesc_1.value == "" || inputFullDesc_1.value == "" || inputImg_1.value == "") {
+            console.error("Remplissez tout les champs pour valider !");
+            alert("Remplissez tout les champs pour valider !");
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+            openForm();
+        }
+        else {
+            postUser();
+            closeForm();
+        }
     }
     else {
         closeForm();
         alert(checker);
     }
 });
-function updateUser() {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, error_2;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios.put(api + '/characters', {
-                            name: inputName.value,
-                            shortDescription: inputShortDesc.value,
-                            description: inputFullDesc.value,
-                            image: inputImg.value
-                        })];
-                case 1:
-                    response = _a.sent();
-                    console.log(response.data);
-                    window.location.href = window.location.href;
-                    return [2 /*return*/, response];
-                case 2:
-                    error_2 = _a.sent();
-                    console.error(error_2);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function updateUser() {
+//     try {
+//         const response = await axios.put(api + '/characters', {
+//             name: inputName.value,
+//             shortDescription: inputShortDesc.value,
+//             description: inputFullDesc.value,
+//             image: inputImg.value
+//         });
+//         console.log(response.data);
+//         window.location.href=window.location.href
+//         return response;
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }

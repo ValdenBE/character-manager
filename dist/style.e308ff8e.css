@@ -4,7 +4,8 @@ body {
     margin: 0;
     background-color: #1E3231;
 }
-.btnAdd{
+
+.btnAdd {
     background: none;
     border-radius: 15px;
     border: 2px solid white;
@@ -14,19 +15,22 @@ body {
     cursor: pointer;
     margin-left: 15px;
 }
-.title{
+
+.title {
     font-family: 'Play', sans-serif;
     font-size: 37px;
     color: white;
     margin-top: 0;
-    margin-bottom:-36px;
+    margin-bottom: -36px;
     text-shadow: 1px 2px 5px black;
 }
+
 main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 header {
     background: #485665;
     border-bottom: 1px solid #D0A5C0;
@@ -34,11 +38,13 @@ header {
     height: 50px;
     margin-bottom: 20px;
 }
-img{
+
+img {
     width: fit-content;
     margin-top: 10px;
-    border:2px solid #D0A5C0;
+    border: 2px solid #D0A5C0;
 }
+
 .Name {
     font-family: 'Lobster', cursive;
     color: white;
@@ -47,7 +53,8 @@ img{
     margin-top: 0px;
     margin-bottom: 0px;
 }
-.Desc{
+
+.Desc {
     font-family: 'Play', sans-serif;
 }
 
@@ -73,7 +80,6 @@ button {
     margin-right: 20px;
 }
 
-img {}
 
 p {
     text-align: center;
@@ -91,7 +97,9 @@ p {
     right: 28px;
     width: 280px;
 }
-.form-popup, .infos-popup {
+
+.form-popup,
+.infos-popup {
     display: none;
     position: fixed;
     z-index: 1;
@@ -100,7 +108,7 @@ p {
     margin: 0;
     top: 0;
     border: none !important;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     text-align: center;
 }
 
@@ -115,7 +123,9 @@ p {
     display: flex;
     border: 1px solid white;
 }
-.closeFormBtn, .btnSubmit{
+
+.closeFormBtn,
+.btnSubmit {
     background: none;
     border-radius: 15px;
     border: 2px solid white;
@@ -125,7 +135,8 @@ p {
     cursor: pointer;
     margin-left: 15px;
 }
-label{
+
+label {
     font-size: 35px;
     font-family: 'Lobster', cursive;
     color: white;
@@ -133,12 +144,13 @@ label{
     padding: 10px;
 }
 
-input{
+input {
     width: 500px !important;
     font-size: 22px;
     margin: auto;
 }
-.popupName{
+
+.popupName {
     font-family: 'Play', sans-serif;
     font-size: 73px;
     text-shadow: 3px 2px white;
