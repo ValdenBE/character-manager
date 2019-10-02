@@ -17,12 +17,12 @@
         <p class="title">Character-Manager</p>
     </header>
     <main>
-        <div class="infos-popup" id="Infos">
-            <div class="infos-content">
-                <p class="contentData"></p>
-                <p class="contentData"></p>
-                <p class="contentData"></p>
-                <p class="contentData"></p>
+        </div>
+        <div class="view-popup" id="view">
+            <div id="view-content">
+                <p class="charName"></p>
+                <p class="charSmallDesc"></p>
+                <p class="charDesc"></p>
             </div>
         </div>
         <div class="form-popup" id="myForm">
@@ -33,7 +33,7 @@
                 <label for="shortDesc">Short Description :</label>
                 <input class="form-control" type="text" name="shortDesc" id="shortDesc" />
                 <label for="fullDesc">Full Description :</label>
-                <input class="form-control" type="text" name="fullDesc" id="fulDesc" />
+                <textarea class="form-control" name="fullDesc" id="fulDesc"></textarea>
                 <label for="pict">Picture :</label>
                 <input class="form-control" type="text" name="pict" id="pict" />
                 <input type="file" id="dataImg" onchange="encodeImageFileAsURL(this)" />
