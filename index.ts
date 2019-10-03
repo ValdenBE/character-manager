@@ -1,3 +1,4 @@
+//test
 ((window) => {
     const axios = require('axios');
     const api = 'https://character-database.becode.xyz';
